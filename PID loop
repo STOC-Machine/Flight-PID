@@ -1,0 +1,38 @@
+class PID(){
+    //scale factors
+  double pScale = 0.0;
+  double iScale = 0.0;
+  double dScale = 0.0;
+  
+    //holding values
+  double iTemp = 0.0;
+  double dTemp;
+   
+    //integrator max and min
+  double iMax = 300;
+  double iMin = -300;
+  
+    //final terms
+  double pTerm;
+  double iTerm;
+  double dTerm;
+  double pid;                     //these terms and above need to be inisalized outside the loop
+  
+    //finding error
+  double errorValue = currentValue - idealValue;         //currentValue is from sensors, idealValue is the wanted position
+  
+  pTerm = pScale * errorValue;
+   
+  dTerm = errorValue - dTemp;
+  dTemp = errorValue;
+  
+  iTemp = iTemp + errorValue;
+  if iTemp > iMax
+    iTemp = iMax;
+  if iTemp < iMin
+    iTemp = iMin
+  iTerm = iScale * iTemp;
+ 
+  pid = pTerm + iTerm + dTerm;
+  return pid;
+}
