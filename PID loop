@@ -1,25 +1,35 @@
-class PID(){
-    //scale factors
+class PID{
+  //scale factors
   double pScale = 0.0;
   double iScale = 0.0;
   double dScale = 0.0;
   
-    //holding values
-  double iTemp = 0.0;
-  double dTemp;
+  //holding values
+  double iTemp = 0;
+  double dTemp = 0;
    
-    //integrator max and min
+  //integrator max and min
   double iMax = 300;
   double iMin = -300;
   
-    //final terms
-  double pTerm;
-  double iTerm;
-  double dTerm;
-  double pid;                     //these terms and above need to be inisalized outside the loop
+  //Variable terms
+  double pTerm = 0;
+  double iTerm = 0;
+  double dTerm = 0;
+  double pid = 0;                     //these terms and above need to be inisalized outside the loop
   
-    //finding error
-  double errorValue = currentValue - idealValue;         //currentValue is from sensors, idealValue is the wanted position
+  // Constructor
+  PID();  // Constructor, does nothing now
+ 
+  // Class methods
+  double update(double currVal, double idealVal);
+  void print() {cout << pid << endl;}
+};
+
+
+double PID::update(double currVal, double idealVal){
+  //finding error
+  double errorValue = currVal - idealVal;         //currentValue is from sensors, idealValue is the wanted position
   
   pTerm = pScale * errorValue;
    
@@ -27,12 +37,22 @@ class PID(){
   dTemp = errorValue;
   
   iTemp = iTemp + errorValue;
-  if iTemp > iMax
+  if (iTemp > iMax)
     iTemp = iMax;
-  if iTemp < iMin
+  if (iTemp < iMin)
     iTemp = iMin
   iTerm = iScale * iTemp;
  
   pid = pTerm + iTerm + dTerm;
   return pid;
+}
+
+
+int main(){
+    PID myPid;
+    
+    myPid.update(arg1, arg2);
+    myPid.print();
+
+    return 0;
 }
