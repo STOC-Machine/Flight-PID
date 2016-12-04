@@ -1,3 +1,6 @@
+#include <oistream>
+using namespace std;
+
 class PID{
   //scale factors
   double pScale = 0.0;
@@ -22,6 +25,7 @@ class PID{
   PID();  // Constructor, does nothing now
  
   // Class methods
+  public:
   double update(double currVal, double idealVal);
   void print() {cout << pid << endl;}
 };
@@ -40,7 +44,7 @@ double PID::update(double currVal, double idealVal){
   if (iTemp > iMax)
     iTemp = iMax;
   if (iTemp < iMin)
-    iTemp = iMin
+    iTemp = iMin;
   iTerm = iScale * iTemp;
  
   pid = pTerm + iTerm + dTerm;
