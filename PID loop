@@ -55,6 +55,10 @@ double PID::update(double currVal, double idealVal){
 int main(){
     PID myPid;
     
+    //need to insert error value and desired valur into these arguments
+    double arg1 = 0.5;
+    double arg2 = 0.0;
+    
     myPid.update(arg1, arg2);
     myPid.print();
 
