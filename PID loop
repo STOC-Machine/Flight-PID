@@ -22,7 +22,7 @@ class PID{
   double pid = 0;                     //these terms and above need to be inisalized outside the loop
   
   // Constructor
-  PID();  // Constructor, does nothing now
+  //PID();  // Constructor, does nothing now
  
   // Class methods
   public:
