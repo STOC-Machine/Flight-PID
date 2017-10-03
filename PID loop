@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 class PID{
   //scale factors
   double pScale = 0.0;
@@ -19,9 +22,10 @@ class PID{
   double pid = 0;                     //these terms and above need to be inisalized outside the loop
   
   // Constructor
-  PID();  // Constructor, does nothing now
+  //PID();  // Constructor, does nothing now
  
   // Class methods
+  public:
   double update(double currVal, double idealVal);
   void print() {cout << pid << endl;}
 };
@@ -40,7 +44,7 @@ double PID::update(double currVal, double idealVal){
   if (iTemp > iMax)
     iTemp = iMax;
   if (iTemp < iMin)
-    iTemp = iMin
+    iTemp = iMin;
   iTerm = iScale * iTemp;
  
   pid = pTerm + iTerm + dTerm;
@@ -50,6 +54,10 @@ double PID::update(double currVal, double idealVal){
 
 int main(){
     PID myPid;
+    
+    //need to insert error value and desired valur into these arguments
+    double arg1 = 0.5;
+    double arg2 = 0.0;
     
     myPid.update(arg1, arg2);
     myPid.print();
